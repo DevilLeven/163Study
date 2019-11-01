@@ -4,7 +4,7 @@
 	}
 	jQuery.fn = jQuery.prototype = {
 		init: function() {
-
+      console.log(111);
 		},
 		css: function() {
 
@@ -56,7 +56,8 @@
 	}
 
 	//共享原型对象
-	jQuery.fn.init.prototype = jQuery.fn;
+	//jQuery.fn.init.prototype = jQuery.fn;
+	jQuery.prototype.init.prototype = jQuery.prototype;
     jQuery.extend({
 		//类型检测
 		isPlainObject: function(obj){
@@ -67,4 +68,8 @@
 		}
 	});
 	root.$ = root.jQuery = jQuery;
-})(this);
+	var obj = {
+	  constructor(){}
+  }
+
+})(window);
