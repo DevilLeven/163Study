@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Title</title>
+  <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+  <script src="./validator.js"></script>
+</head>
+<body>
+<form id="signupForm" method="get" action="">
+  <p>
+    <label>用户名</label>
+    <input id="username" name="username" type="text">
+  </p>
+  <p>
+    <label>密码</label>
+    <input name="password" type="password">
+  </p>
+  <p>
+    <label>身份证</label>
+    <input name="IDcard" type="text">
+  </p>
+  <p>
+    <label>年龄</label>
+    <input name="age" type="number">
+  </p>
+  <p>
+    <label>Email</label>
+    <input name="email" type="email">
+  </p>
+  <p>
+    <label>手机</label>
+    <input name="phone" type="text">
+  </p>
+  <p>
+    <label>请同意我们的声明</label>
+    <input type="checkbox" class="checkbox" name="agree">
+  </p>
+  <p>
+    <input class="submit" type="button" value="提交">
+  </p>
+</form>
+</body>
+<script>
+  $(function () {
+    var vat = $('#signupForm').validatorForm([
+      {
+        name: 'username',
+        required: true,
+        event: 'change',
+        message: '请填写用户名'
+      },
+      {
+        name:'email',
+        rule: 'email'
+      },
+      {
+        name:'age',
+        required: true,
+      },
+      {
+        name:'age',
+        min: 0
+      },
+      {
+        name:'age',
+        max: 100
+      }
+    ], function (error) {
+      // 返回验证信息
+      /**
+       * [ {name: "username", message: "请填写用户名"},
+       {name: "email", message: "email验证不通过"},
+       {name: "age", message: "age不可大于100"},]
+       */
+      console.log(error)
+    });
+    $('.submit').click(function () {
+      vat.validator();
+    })
+
+  })
+</script>
+</html>

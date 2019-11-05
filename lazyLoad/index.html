@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.js"></script>
+  <script src="./lazyLoad.js"></script>
+  <title>Title</title>
+</head>
+<body>
+<ul style="list-style: none;height: 600px;overflow-y: auto;" id="imgList">
+  <li>
+    <img class="lazyImg" data-src="http://www.chinacar.com.cn/resources/ueditor/image/20170907/77d394ede9a80fa6b5218feb6d2d14af.jpg" width="750" height="400"/>
+  </li>
+  <li>
+    <img class="lazyImg" data-src="http://y1.ifengimg.com/haina/2016_04/3605c3a55f63232_w740_h382.png" width="750" height="400" />
+  </li>
+  <li>
+    <img class="lazyImg" data-src="http://n.sinaimg.cn/translate/w516h300/20171207/Mv6I-fypnsin6547536.jpg" width="750" height="400" />
+  </li>
+  <li>
+    <img class="lazyImg" data-src="http://03img.mopimg.cn/mobile/20180712/20180712105457_875f47c6c233613e96c12f34050f6b85_7.jpeg" width="750" height="400" />
+  </li>
+  <li>
+    <img class="lazyImg" data-src="http://hbimg.b0.upaiyun.com/600ba46756c46534126fb8856f8340e5cf283fb3a5ff5-tXN5vJ_fw658" width="750" height="400" />
+  </li>
+</ul>
+</body>
+<script>
+  $(function () {
+    $('img.lazyImg').lazyload({
+      container: $("#imgList")
+    });
+  })
+</script>
+</html>
