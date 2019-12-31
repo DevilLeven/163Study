@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>表单处理</title>
+  <script src="../lesson2/node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+      <input type="text" v-model="message" @change="changeInput" @input="updateInput">
+      <br>
+      <br>
+      <br>
+      <textarea v-model="message"></textarea>
+      <input type="radio" name="radio" value="1" v-model="param"><label for="">🍎</label>
+      <input type="radio" name="radio" value="2" v-model="param"><label for="">梨</label>
+      <p>{{param}}</p>
+
+      <label for="">
+        <input type="checkbox" v-model="checkVal" :true-value="trueValue" :false-value="falseValue">
+        {{checkVal}}
+      </label>
+
+      <select name="" id="" v-model="selected" multiple>
+        <option value="">请选择</option>
+        <option value="1">A</option>
+        <option value="2">B</option>
+        <option value="3">C</option>
+      </select>
+      <p>{{selected}}</p>
+  </div>
+</body>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      message: '我是message初始值',
+      param: '2',
+      checkVal: '',
+      trueValue: '1',
+      falseValue: '2',
+      selected: []
+    },
+    methods: {
+      changeInput(e){
+        console.log('changeInput', e)
+      },
+      updateInput(e){
+        console.log('updateInput', e)
+      },
+    },
+  })
+</script>
+</html>

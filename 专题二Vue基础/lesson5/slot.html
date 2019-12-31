@@ -1,0 +1,21 @@
+  <div id="app">
+    <child-component>
+      <template slot="header"></template>
+      <p>slot分发的内容</p>
+      <p>slot分发的内容</p>
+      <div slot="footer">底部footer内容</div>
+    </child-component>
+  </div>
+  <script src="../lesson2/node_modules/vue/dist/vue.js"></script>
+  <script>
+  Vue.component('child-component', {
+    template: `<div>
+      <slot name='header'><p>如果父组件没有插入内容，该内容会默认显示header</p></slot>
+      <slot><p>如果父组件没有插入内容，该内容会默认显示</p></slot>
+      <slot name="footer"><p>如果父组件没有插入内容，该内容会默认显示footer</p></slot>
+    </div>`
+  })
+  new Vue({
+    el: "#app"
+  })
+  </script>

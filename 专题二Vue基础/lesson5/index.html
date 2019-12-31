@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>组件</title>
+  <script src="../lesson2/node_modules/vue/dist/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <my-component :message="message" :propObj="{name: 'xiaoming'}"></my-component>
+    <com-a :message="message"></com-a>
+    <com-a message="我是父组件传递的值1111"></com-a>
+    <com-a message="我是父组件传递的值2222"></com-a>
+    <com-a></com-a>
+    <com-a></com-a>
+
+  </div>
+</body>
+<script>
+  Vue.component("my-component",{
+    props: {
+      message: String,
+      propObj: {
+        type: Object,
+        require: true
+      }
+    },
+    data: function(){
+      return {
+        defaultMsg: this.message
+      }
+    },
+    template: "<div>我是全局注册的组件,message={{message}}</div>"
+  })
+  var ComA =  {
+    template: "<div>我是局部注册的组件, message={{message}}</div>",
+    props: ['message'],
+    data() {
+      return {
+        
+      }
+    },
+    methods: {
+      
+    },
+  }
+  let app = new Vue({
+    el: '#app',
+    components: {
+      "com-a": ComA
+    },
+    data: {
+      message: '我是父组件的动态值传递给子组件'
+    }
+  })
+</script>
+</html>

@@ -39,6 +39,13 @@
 
 
 				*/
+      var ary = [NaN ,1,21,32,NaN,41,5].sort(); //  [1, 21, 32, 41, 5, NaN, NaN];
+      var i = length = ary.length;
+      while (i > 0){
+        console.log(ary[i] === NaN);
+        typeof ary[i] === 'number' &&ary[i] !== ary[i] && (ary.splice(i,1));
+        i--;
+      }
 		</script>
 	</body>
 </html>

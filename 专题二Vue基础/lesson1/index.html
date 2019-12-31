@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="https://cdn.bootcss.com/vue/2.6.10/vue.min.js"></script>
+</head>
+<body>
+  <div id="app" class="myapp">
+    <ul>
+      <li v-for="item in feBooks">{{item.name}}</li>
+    </ul>
+    <input type="text" v-model="title">
+    <p>{{title}}</p>
+  </div>
+  <script>
+  new Vue({
+    el: '.myapp',
+    data: {
+      title: "欢迎来到网易云课堂",
+      feBooks: [
+        {name: 'vue基础课程'},
+        {name: 'vue进阶课程'},
+        {name: 'vue核心源码课程'},
+        {name: 'vue实战课程'},
+        {name: 'webpack课程'}
+      ]
+    }
+  })
+  </script>
+</body>
+</html>

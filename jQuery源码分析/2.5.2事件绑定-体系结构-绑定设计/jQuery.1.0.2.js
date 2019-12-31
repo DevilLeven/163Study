@@ -20,7 +20,7 @@
 		init: function(selector, context) {
 			context = context || document;
 			var match, elem, index = 0;
-			//$()  $(undefined)  $(null) $(false)  
+			//$()  $(undefined)  $(null) $(false)
 			if (!selector) {
 				return this;
 			}
@@ -31,7 +31,7 @@
 				}
 				//创建DOM
 				if (match) {
-					//this  
+					//this
 					jQuery.merge(this, jQuery.parseHTML(selector, context));
 					//查询DOM节点
 				} else {
@@ -64,7 +64,7 @@
 		var target = arguments[0] || {};
 		var length = arguments.length;
 		var i = 1;
-		var deep = false; //默认为浅拷贝 
+		var deep = false; //默认为浅拷贝
 		var option;
 		var name;
 		var copy;
@@ -84,7 +84,7 @@
 
 		if (length == i) {
 			target = this;
-			i--; //0   
+			i--; //0
 		}
 
 		for (; i < length; i++) {
@@ -113,7 +113,7 @@
 	jQuery.extend({
 		expando: "jQuery" + (core_version + Math.random()).replace(/\D/g, ""),
 		guid: 1, //计数器
-		//类型检测     
+		//类型检测
 		isPlainObject: function(obj) {
 			return typeof obj === "object";
 		},
@@ -125,7 +125,7 @@
 		isFunction: function(fn) {
 			return toString.call(fn) === "[object Function]";
 		},
-		//类数组转化成正真的数组  
+		//类数组转化成正真的数组
 		markArray: function(arr, results) {
 			var ret = results || [];
 			if (arr != null) {
@@ -159,7 +159,7 @@
 			if (!data || typeof data !== "string") {
 				return null;
 			}
-			//过滤掉<a>   <a>   => a 
+			//过滤掉<a>   <a>   => a
 			var parse = rejectExp.exec(data);
 			console.log(parse)
 			return [context.createElement(parse[1])];
@@ -271,7 +271,7 @@
 		 args     自定义回调函数参数
 		 */
 		each: function(object, callback, args) {
-			//object  数组对象 || object对象 
+			//object  数组对象 || object对象
 			var length = object.length;
 			var name, i = 0;
 
@@ -323,6 +323,7 @@
 				//方法直接在一个对象上定义一个或多个新的属性或修改现有属性,并返回该对象。
 				//DOM   =>  jQuery101089554822917892030.7449198463843298 = 1;
 				Object.defineProperties(elem, descriptor);
+        console.log(elem[this.expando])
 			}
 			//确保缓存对象记录信息
 			if (!this.cache[unlock]) {
@@ -334,7 +335,7 @@
 
 		get: function(elem, key) {
 			//找到或者创建缓存
-			var cache = this.cache[this.key(elem)];    //1  {events:{},handle:function(){}} 
+			var cache = this.cache[this.key(elem)];    //1  {events:{},handle:function(){}}
 			//key 有值直接在缓存中取读
 			return key === undefined ? cache : cache[key];
 		},
@@ -347,12 +348,12 @@
 
 	//jQuery 事件模块
 	jQuery.event = {
-		//1:利用 data_priv 数据缓存,分离事件与数据 2:元素与缓存中建立 guid 的映射关系用于查找 
+		//1:利用 data_priv 数据缓存,分离事件与数据 2:元素与缓存中建立 guid 的映射关系用于查找
 		add: function(elem, type, handler) {
 			var eventHandle, events,handlers;
 			//事件缓存 数据对象
 			var elemData = data_priv.get(elem);
-
+      console.log(elemData)
 
 			//检测handler是否存在ID(guid)如果没有那么传给他一个ID
 			//添加ID的目的是 用来寻找或者删除相应的事件
@@ -363,7 +364,7 @@
 			给缓存增加事件处理句柄
 			elemData = {
 			  events:
-			  handle:	
+			  handle:
 			}
 			*/
 			//同一个元素,不同事件,不重复绑定    {events:{}}
@@ -377,7 +378,7 @@
 				}
 			}
 			eventHandle.elem = elem;
-			//通过events存储同一个元素上的多个事件   {events:{click:[]}}   
+			//通过events存储同一个元素上的多个事件   {events:{click:[]}}
 			if (!(handlers = events[type])) {
 				handlers = events[type] = [];
 				handlers.delegateCount = 0;  //有多少事件代理默认0
@@ -392,7 +393,7 @@
 				elem.addEventListener(type, eventHandle, false);
 			}
 		},
-		
+
 		//修复事件对象event 从缓存体中的events对象取得对应队列。
 		dispatch: function(event) {
 			//IE兼容性处理如：event.target or event.srcElement
@@ -400,12 +401,12 @@
 
 			//提取当前元素在cache中的events属性值。 click
 			var handlers = (data_priv.get(this, "events") || {})[event.type] || [];
-			console.log(handlers)
+			console.warn(handlers)
 			event.delegateTarget = this;
 			//执行事件处理函数
 		   jQuery.event.handlers.call( this, event, handlers );
 		},
-		
+
 		//执行事件处理函数
 		handlers: function( event, handlers ) {
 			handlers[0].handler.call(this, event);

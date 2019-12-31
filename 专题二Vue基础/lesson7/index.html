@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>渲染函数及jsx</title>
+  <script src="../lesson2/node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="app"></div>
+  <button class="btn btn-active"><span>jsx</span></button>
+</body>
+<script>
+  Vue.component('heading-line', {
+    render: function(createElement){
+      return createElement(
+        'h' + this.level, // 标签名称
+        this.$slots.default
+      )
+    },
+    props: {
+      level: {
+        type: Number,
+        required: true
+      }
+    }
+  }),
+
+  {
+    type: 'button',
+    props: {
+      className: 'btn btn-active',
+      children: {
+        type: 'span',
+        props: {
+          children: "jsx"
+        }
+      }
+    }
+  }
+
+
+  new Vue({
+    el: '#app',
+    template: "<div><heading-line :level='1'>我是标题</heading-line></div>"
+  })
+</script>
+</html>

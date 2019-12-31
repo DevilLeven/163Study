@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>自定义插件</title>
+  <script src="../lesson2/node_modules/vue/dist/vue.min.js"></script>
+  <script src='./rulesPlugin.js'></script>
+</head>
+<body>
+  <div id="app"></div>
+<script>
+Vue.use(RulesPlugin)
+const vm = new Vue({
+  data: { number: 1, phone: '11'},
+  rules: {
+    number: {
+      validate: value => value > 0,
+      message: 'number 必须大于0'
+    },
+    phone: {
+      validate: value => value.length === 11,
+      message: '请输入11位的手机号'
+    }
+  },
+  // created() {
+  //   const rules = this.$options.rules
+  //   if (rules) {
+  //     Object.keys(rules).forEach(key => {
+  //       const {validate, message} = rules[key]
+  //       this.$watch(key, newValue => {
+  //         const valid = validate(newValue)
+  //         if (!valid){
+  //           console.error(message)
+  //         }
+  //       })
+  //     })
+  //   }
+  // },
+})
+// vm.number = 0 // -> number 必须大于0
+
+</script>
+</html>

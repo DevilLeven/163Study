@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>计算属性及watch</title>
+  <script src="../lesson2/node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    <p>苹果手机单价：<input type="text" v-model="price1">数量：<input type="text" v-model="number1"></p>
+    <p>华为手机单价：<input type="text" v-model="price2">数量：<input type="text" v-model="number2"></p>
+    <p>锤子手机单价：<input type="text" v-model="price3">数量：<input type="text" v-model="number3"></p>
+    <div>直接计算：{{price1 * number1 + price2 * number2 + price3 * number3 }}</div>
+    <div>计算属性计算：{{totalPrice}}</div>
+    <div>methods计算：{{caclTotalPrice()}}</div>
+  </div>
+</body>
+<script>
+  let app = new Vue({
+    el: '#app',
+    data: {
+      price1: '',
+      number1: 0,
+      price2: '',
+      number2: 0,
+      price3: '',
+      number3: 0,
+      appleInfo: {
+        price: '',
+        number: 1
+      }
+    },
+    computed: {
+      totalPrice: function(){
+        let {price1, number1, price2, number2, price3, number3} = this
+        return price1 * number1 + price2 * number2 + price3 * number3
+      }
+    },
+    watch: {
+      price1: function(newVal,oldVal){
+        console.log('wacth===>>', newVal, oldVal)
+      },
+      appleInfo: {
+        handler: function(newVal,oldVal){
+          console.log('wacth appleInfo===>>', newVal, oldVal)
+        },
+        deep: true,
+        immediate: true
+      }
+    },
+    methods: {
+      caclTotalPrice() {
+        let {price1, number1, price2, number2, price3, number3} = this
+        return price1 * number1 + price2 * number2 + price3 * number3
+      }
+    },
+  })
+</script>
+</html>

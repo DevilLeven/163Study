@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script src="node_modules/vue/dist/vue.min.js"></script>
+</head>
+<body>
+  <div id="app">
+    {{title}}
+    <div  v-once>{{title}}</div>
+    <p v-bind:id="myapp">{{title}}</p>
+    <p :id="myapp">简写{{title}}</p>
+    <p :id="myapp">{{title}}</p>
+    <div v-html="htmlStr">{{htmlStr}}</div>
+    <div>
+      {{number+1}}
+    </div>
+    <div>
+      {{isShow ? 1 : 0}}
+    </div>
+    <div>
+      {{str.split('').join('-')}}
+    </div>
+    <!-- {{var a = 0;if(a) return a}} -->
+
+    <div>
+      <div v-if="type === 1">type={{type}}</div>
+      <div v-else-if="type === 2">type={{type}}</div>
+      <div v-else>type={{type}}</div>
+      <div v-show="isShow">{{type}}</div>
+      <div v-on:click="alert(0)">点我</div>
+    </div>
+    <div>
+      <ul>
+        <li v-for="item in myList">{{item.name}}</li>
+      </ul>
+      <input type="text" v-model="title" @input="handleInput">
+    </div>
+    <div>
+      <p v-if="!isShow">我是p标签</p>
+      <button @click="handelClick">点击隐藏p元素</button>
+    </div>
+  </div>
+  <script>
+    const htmlStr = '<div>网易云课堂</div>'
+    let app = new Vue({
+      el: '#app',
+      data: {
+        myapp: 'myApp',
+        title: 'hello world',
+        number: 1,
+        type: 1,
+        isShow: false,
+        str: '我是中国人，我爱我的国家',
+        myList: [
+          {name: 'vue基础课程'},
+          {name: 'vue进阶课程'},
+          {name: 'vue高级课程'},
+          {name: 'vue实战课程'},
+          {name: 'vue+webpack课程'},
+        ]
+      },
+      methods: {
+        handleInput(e){
+          console.log(e)
+        },
+        handelClick(){
+          this.isShow = true
+        }
+      },
+    })
+    app.$data.title = 'hello hello'
+  </script>
+</body>
+</html>

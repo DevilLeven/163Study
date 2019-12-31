@@ -8,13 +8,31 @@
 		<script src="underscore.js"></script>
 		<script>
 		console.log(_.indexOf([1,2,3, 4,5,6],5,true));
-		
+
 		//6   6/2 = mid     4 < 5 value
-		
+
 		function add(){
 		  var count = map("123");
 		};
-		
+    Array.prototype.each = function(callback) {
+      var key, i = 0;
+      var length = this.length;
+      for (; i < length; i++) {
+        callback.call(this, this[i], i);
+      }
+    };
+    Array.prototype.filter=function(predicate) {
+      var results = [];
+      var cb = predicate|| function (value, index, list) {};
+      this.each(function(value, index, list) {
+        if (predicate(value, index, list)) results.push(value);
+      });
+      return results;
+    };
+    [NaN ,1,21,32,NaN,41,5].filter(function(val){
+      return !(typeof val==='number'&& val!==val)
+    })
 		</script>
 	</body>
 </html>
++
